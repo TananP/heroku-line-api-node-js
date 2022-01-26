@@ -2,9 +2,10 @@ const express = require("express")
 const app = express()
 const PORT = process.env.PORT || 8080
 
+app.use(express.json());
 
 app.get("/", (req, res)=>{
-    res.json({result: "ok", data:[1,2,3,4,5]})
+    res.json({result: "ok !!!!!!!", data:[1,2,3,4,5]})
 })
 
 app.post('/api/broadcast', (req, res) => {
@@ -13,10 +14,10 @@ app.post('/api/broadcast', (req, res) => {
         return;
     }
     const testData = {
-        id: 0,
+        id: 99,
         name: req.body.name
     }
-    res.send(testData);
+    res.json(testData);
 })
 
 app.listen(PORT, ()=>{
