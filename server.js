@@ -11,7 +11,7 @@ const lineToken = "Bearer 7PKzEpl7hYP0nmB6wMDUutMWAVREoBCgDhgY5vjDMWXE4o4K7Npzgk
 
 
 app.get("/", (req, res)=>{
-    res.send(`Hello 1.001`);
+    res.json({result: "OK!!!"});
 })
 app.post('/api/push-message', (req, res) => {
     let lineBody = {
@@ -26,8 +26,8 @@ app.post('/api/push-message', (req, res) => {
         url: 'https://api.line.me/v2/bot/message/push',
         body: JSON.stringify(lineBody)
       });
-    const final = {result: `Status: 200 OK 1.003` , lineUid:req.body.lineUID}
-    res.send(final);
+    const final = {result: "Status: 200 OK 1.003" , lineUid:req.body.lineUID}
+    res.json(final);
 })
 app.listen(PORT, ()=>{
     console.log(`Serer is running. ${PORT}`)
