@@ -16,7 +16,7 @@ app.get("/", (req, res)=>{
 app.post('/api/push-message', (req, res) => {
     let lineBody = {
         "to": req.body.lineUID,
-        "messages":[req.body.lineMessagesJdon]
+        "messages":req.body.lineMessagesJdon
       };
       requestltLib.post({
         headers:{
