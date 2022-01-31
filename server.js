@@ -14,18 +14,6 @@ app.get("/", (req, res)=>{
     res.send('Hello 1.001');
 })
 
-app.post('/api/broadcast', (req, res) => {
-    if(!req.body.name || req.body.name.length === 0 ){
-        res.status(400).send('Name Required !!!');
-        return;
-    }
-    const testData = {
-        id: 99,
-        name: req.body.name
-    }
-    res.json(testData);
-})
-
 app.post('/api/push-message', (req, res) => {
     // let messagesJson = req.body.messagesJson;
     // const lineUid = 'U20a1f124962f1f5a1cbb026ba732004b';
