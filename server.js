@@ -12,7 +12,6 @@ app.use((req, res, next) => {
   next();
 })
 
-
 // Line
 const lineToken = "Bearer 7PKzEpl7hYP0nmB6wMDUutMWAVREoBCgDhgY5vjDMWXE4o4K7NpzgknM9UxmAoj6/ZAvbvjidg8XTBbQRNEkl7IuUwkkH9GNb67TRXJIXi8aO/6P/nW8xDrIwUjKbOZFJx3m33mIdKBSjSGNiWVKCgdB04t89/1O/w1cDnyilFU=";
 
@@ -44,6 +43,31 @@ app.post('/api/push-message', (req, res) => {
       });
     const final = {result: "Status: 200 OK 1.003" , lineUid:req.body.lineUID}
     res.json(final);
+})
+
+app.post('/api/push-message-mobile-app', (req, res) => {
+  if(req.body.lineMessagesJdon === "SendByTenNow"){
+    let lineBody = {
+      "to": "U20a1f124962f1f5a1cbb026ba732004b",
+      "messages": [{
+          "type":"text",
+          "text": "Test notification wifi down !!!!"
+      }]
+    };
+    requestltLib.post({
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': lineToken
+      },
+      url: 'https://api.line.me/v2/bot/message/push',
+      body: JSON.stringify(lineBody)
+    });
+    const final = {result: "Status: 200 OK 1.003" , lineUid:req.body.lineUID}
+    res.json(final);
+  }else{
+    const final = {result: "Status: 200 But not send !!!!s" , lineUid:req.body.lineUID}
+    res.json(final);
+  }
 })
 
 app.post('/api/multicast-message', (req, res) => {
